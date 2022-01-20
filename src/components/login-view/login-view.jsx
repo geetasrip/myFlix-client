@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import "./login-view.scss";
 
 export function LoginView(props) {
   const [username, setUsername] = useState("");
@@ -13,26 +16,31 @@ export function LoginView(props) {
   };
 
   return (
-    <form>
-      <label>
-        Username:
-        <input
+    <Form>
+      <Form.Group controlId="formUsername">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
           type="text"
           value={username}
           onChange={e => setUsername(e.target.value)}
         />
-      </label>
-      <label>
-        Password:
-        <input
+      </Form.Group>
+      <Form.Group controlId="formPassword">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
           type="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-      </label>
-      <button type="submit" onClick={handleSubmit}>
+      </Form.Group>
+      <Button
+        variant="primary"
+        className="marginTop"
+        type="submit"
+        onClick={handleSubmit}
+      >
         Submit
-      </button>
-    </form>
+      </Button>
+    </Form>
   );
 }
