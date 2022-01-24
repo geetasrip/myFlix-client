@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 import { Card, CardColumns } from "react-bootstrap";
 import img from "../../img/images.jpeg";
+import { Link } from "react-router-dom";
 
 export class MovieCard extends React.Component {
   render() {
+    console.log("looping through each movie");
     const { movie, onMovieClick } = this.props;
 
     return (
@@ -14,9 +16,9 @@ export class MovieCard extends React.Component {
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>{movie.Description}</Card.Text>
-          <Button onClick={() => onMovieClick(movie)} variant="link">
-            Open
-          </Button>
+          <Link to={`/movies/${movie._id}`}>
+            <Button variant="link">Open</Button>
+          </Link>
         </Card.Body>
       </Card>
     );
