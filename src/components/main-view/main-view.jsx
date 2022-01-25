@@ -2,18 +2,15 @@ import React from "react";
 import axios from "axios";
 import * as ReactDOM from "react-dom";
 import { connect } from "react-redux";
-import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { setMovies } from "../../actions/actions";
 
 import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-import { RegistrationView } from "../registration-view/registration-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Expenses from "../../routes/expenses";
-import Invoices from "../../routes/invoices";
 
 class MainView extends React.Component {
   constructor() {
@@ -69,17 +66,17 @@ class MainView extends React.Component {
           </Col>
         </Row>
       );
-    // if (movies.length === 0) return <div className="main-view" />;
+    if (movies.length === 0) return <div className="main-view" />;
 
-    // console.log("testing");
-    // console.log(movies);
-    // console.log(user);
+    console.log("testing");
+    console.log(movies);
+    console.log(user);
 
     return (
-      <Router>
+      <BrowserRouter>
         <Routes>
           <Row className="main-view justify-content-md-center">
-            {/* <Route
+            <Route
               path="/"
               render={() => {
                 return movies.map(m => (
@@ -100,13 +97,10 @@ class MainView extends React.Component {
                   </Col>
                 );
               }}
-            /> */}
-            <Route path="/">
-              <span>Hello world</span>
-            </Route>
+            />
           </Row>
         </Routes>
-      </Router>
+      </BrowserRouter>
     );
   }
 }
