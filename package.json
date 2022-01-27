@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "myflix-client",
   "default": "src/index.html",
+  "source": "src/index.html",
   "type": "module",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "start": "parcel ",
+    "build": "parcel build"
   },
   "repository": {
     "type": "git",
@@ -23,10 +26,12 @@
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.1",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-rexdux": "^7.2.6"
   },
   "devDependencies": {
     "@parcel/transformer-image": "^2.0.0-rc.0",
-    "@parcel/transformer-sass": "^2.0.0-rc.0"
+    "@parcel/transformer-sass": "^2.2.1",
+    "parcel": "^2.2.1"
   }
 }
