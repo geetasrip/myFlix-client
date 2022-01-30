@@ -10,7 +10,7 @@ export class MovieView extends React.Component {
 
     return (
       <Container fluid className="moviesContainer">
-        <Row>
+        <Row className="justify-content-md-center">
           <Col>
             <div className="movie-view">
               <div className="movie-poster">
