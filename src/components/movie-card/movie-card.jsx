@@ -2,21 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 import { Card, CardColumns } from "react-bootstrap";
-import img from "../../img/images.jpeg";
+import { Link } from "react-router-dom";
+import movieimg from "../../img/images.jpeg";
 
 export class MovieCard extends React.Component {
   render() {
-    const { movie, onMovieClick } = this.props;
+    console.log("looping through each movie");
+    const { movie } = this.props;
 
     return (
       <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={img} />
+        <Card.Img variant="top" src={movieimg} />
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>{movie.Description}</Card.Text>
-          <Button onClick={() => onMovieClick(movie)} variant="link">
-            Open
-          </Button>
+          <Link to={`/movies/${movie._id}`}>
+            <Button variant="link">Open</Button>
+          </Link>
         </Card.Body>
       </Card>
     );

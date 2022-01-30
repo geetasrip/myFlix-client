@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "./movie-view.scss";
 import movieimg from "../../img/images.jpeg";
+import { Link } from "react-router-dom";
 
 export class MovieView extends React.Component {
   render() {
@@ -9,7 +10,7 @@ export class MovieView extends React.Component {
 
     return (
       <Container fluid className="moviesContainer">
-        <Row>
+        <Row className="justify-content-md-center">
           <Col>
             <div className="movie-view">
               <div className="movie-poster">
@@ -23,13 +24,12 @@ export class MovieView extends React.Component {
                 <span className="label">Description: </span>
                 <span className="value">{movie.Description}</span>
               </div>
-              <Button
-                onClick={() => {
-                  onBackClick(null);
-                }}
-              >
-                Back
-              </Button>
+              <Link to={`/directors/${movie.Director.Name}`}>
+                <Button variant="link">Director</Button>
+              </Link>
+              <Link to={`/genres/${movie.Genre.Name}`}>
+                <Button variant="link">Genre</Button>
+              </Link>
             </div>
           </Col>
         </Row>
