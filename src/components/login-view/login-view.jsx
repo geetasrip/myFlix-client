@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./login-view.scss";
@@ -20,7 +20,6 @@ export function LoginView(props) {
       })
       .then(response => {
         const data = response.data;
-        console.log("data", data);
         props.onLoggedIn(data);
       })
       .catch(e => {
@@ -48,14 +47,21 @@ export function LoginView(props) {
           onChange={e => setPassword(e.target.value)}
         />
       </Form.Group>
-      <Button
-        variant="primary"
-        className="buttons-login"
-        type="submit"
-        onClick={handleSubmit}
-      >
-        Submit
-      </Button>
+      <Form.Group>
+        <Button
+          variant="primary"
+          className="buttons-login"
+          type="submit"
+          onClick={handleSubmit}
+        >
+          Submit
+        </Button>
+        <Link to={`/register`}>
+          <Button variant="link" className="buttons-login">
+            Register
+          </Button>
+        </Link>
+      </Form.Group>
     </Form>
   );
 }
