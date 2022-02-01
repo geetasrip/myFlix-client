@@ -11,6 +11,9 @@ import { MovieView } from "../movie-view/movie-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { UserProfile } from "../user-profile/user-profile";
+import { setMovies } from "../../actions/actions";
+import { RegistrationView } from "../registration-view/registration-view";
+
 import { Row, Col } from "react-bootstrap";
 
 class MainView extends React.Component {
@@ -64,7 +67,7 @@ class MainView extends React.Component {
   }
 
   onLoggedIn(authData) {
-    console.log("authData", authData.user);
+    console.log("authData123", authData);
     this.setState({
       user: authData.user.Username,
       username: authData.user.Username,
@@ -77,6 +80,7 @@ class MainView extends React.Component {
     localStorage.setItem("user", authData.user.Username);
     this.getMovies(authData.token);
   }
+
   getMovies(token) {
     axios
       .get("https://my-movies-app-new.herokuapp.com/movies", {
@@ -144,12 +148,22 @@ class MainView extends React.Component {
             exact
             path="/register"
             render={() => {
-              if (user) return <Redirect to="/" />;
-              return (
-                <Col>
-                  <RegistrationView />
+              if (!user)
+                return (
+                  <Col>
+                    <RegistrationView
+                      onLoggedIn={user => this.onLoggedIn(user)}
+                      onBackClick={() => history.goBack()}
+                    />
+                  </Col>
+                );
+              if (movies.length === 0) return <div className="main-view" />;
+
+              return movies.map(m => (
+                <Col md={3} key={m._id}>
+                  <MovieCard movie={m} />
                 </Col>
-              );
+              ));
             }}
           />
           <Route
