@@ -2,7 +2,7 @@
   "name": "myflix-client",
   "version": "1.0.0",
   "description": "myflix-client",
-  "main": "src/index.html",
+  "default": "src/index.html",
   "type": "module",
   "scripts": {
     "test": "npm test",
