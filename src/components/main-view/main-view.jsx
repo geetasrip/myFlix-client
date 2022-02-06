@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 // import { setMovies } from "../../actions/actions";
 
 import { LoginView } from "../login-view/login-view";
-import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
