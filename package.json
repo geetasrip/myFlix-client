@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "npm test",
-    "start": "parcel"
+    "start": "parcel",
+    "build": "parcel build src/index.html"
   },
   "repository": {
     "type": "git",
