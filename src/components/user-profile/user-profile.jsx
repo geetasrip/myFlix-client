@@ -7,8 +7,8 @@ import { MovieCard } from "../movie-card/movie-card";
 import "./user-profile.scss";
 
 export class UserProfile extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       name: null,
       username: null,
@@ -20,7 +20,7 @@ export class UserProfile extends React.Component {
   }
 
   componentDidMount() {
-    //this.props.getUser();
+    this.props.getUser();
   }
 
   setName(value) {
@@ -28,19 +28,15 @@ export class UserProfile extends React.Component {
   }
   setUsername(value) {
     this.setState({ username: value });
-    console.log("username", this.state.username);
   }
   setEmail(value) {
     this.setState({ email: value });
-    console.log("email", this.state.email);
   }
   setPassword(value) {
     this.setState({ password: value });
-    console.log("password", this.state.password);
   }
   setBirthday(value) {
     this.setState({ birthday: value });
-    console.log("birthday", this.state.birthday);
   }
   editUser(e) {
     const username = localStorage.getItem("user");
@@ -48,7 +44,7 @@ export class UserProfile extends React.Component {
     e.preventDefault();
     axios
       .put(
-        `https://my-movies-app-new.herokuapp.com/user/${username}`,
+        `https://my-movies-app-new.herokuapp.com/users/${username}`,
         {
           Username: this.state.username,
           Password: this.state.password,
@@ -67,8 +63,6 @@ export class UserProfile extends React.Component {
           birthday: response.data.birthday
         });
         localStorage.setItem("username", response.data.username);
-        console.log("username");
-        console.log("user data updated");
         window.location.reload();
       })
       .catch(error => {
@@ -77,13 +71,12 @@ export class UserProfile extends React.Component {
   }
 
   deleteUser = async () => {
-    console.log("delete user function");
     const delete_user = await confirm("Are you sure?");
     if (delete_user) {
       const username = localStorage.getItem("user");
       const token = localStorage.getItem("token");
       axios
-        .delete(`https://my-movies-app-new.herokuapp.com/user/${username}`, {
+        .delete(`https://my-movies-app-new.herokuapp.com/users/${username}`, {
           headers: { Authorization: `Bearer${token}` }
         })
         .then(() => {
@@ -119,7 +112,6 @@ export class UserProfile extends React.Component {
 
   render() {
     const { username, email, favorites } = this.props;
-
     return (
       <Container className="UserProfile">
         <Row className="justify-content-md-center">
@@ -127,8 +119,11 @@ export class UserProfile extends React.Component {
             <div className="profileContent">
               <h3>My Profile</h3>
             </div>
-            <h6>Name: {username}</h6>
-            <h6>Email: {email}</h6>
+            <span>Name: {username}</span>
+            <br />
+            <br />
+            <span>Email: {email}</span>
+            <br />
           </Col>
         </Row>
         <div className="profileInformation">
@@ -136,8 +131,8 @@ export class UserProfile extends React.Component {
             <div>
               <h3>Edit Profile</h3>
             </div>
-            <Form.Group>
-              <Form.Label>Name</Form.Label>
+            <Form.Group className="col-md-6">
+              <Form.Label>Name:</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
@@ -145,8 +140,8 @@ export class UserProfile extends React.Component {
                 onChange={e => this.setName(e.target.value)}
               />
             </Form.Group>
-            <Form.Group>
-              <Form.Label>UserName</Form.Label>
+            <Form.Group className="col-md-6">
+              <Form.Label>UserName:</Form.Label>
               <Form.Control
                 type="text"
                 name="username"
@@ -154,7 +149,7 @@ export class UserProfile extends React.Component {
                 onChange={e => this.setUsername(e.target.value)}
               />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="col-md-6">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -163,7 +158,7 @@ export class UserProfile extends React.Component {
                 onChange={e => this.setEmail(e.target.value)}
               />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="col-md-6">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -172,7 +167,7 @@ export class UserProfile extends React.Component {
                 onChange={e => this.setPassword(e.target.value)}
               />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="col-md-6">
               <Form.Label>Birthday</Form.Label>
               <Form.Control
                 type="date"

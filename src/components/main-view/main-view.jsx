@@ -11,8 +11,10 @@ import { MovieView } from "../movie-view/movie-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { UserProfile } from "../user-profile/user-profile";
-import { setMovies } from "../../actions/actions";
+import { setMovies, setUser } from "../../actions/actions";
+import MoviesList from "../movie-list/movie-list";
 import { RegistrationView } from "../registration-view/registration-view";
+import { NavBarView } from "../navbar-view/navbar";
 
 import { Row, Col } from "react-bootstrap";
 
@@ -20,8 +22,6 @@ class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
-      movies: [],
-      user: null,
       username: null,
       password: null,
       email: null,
@@ -33,9 +33,8 @@ class MainView extends React.Component {
   componentDidMount() {
     let accessToken = localStorage.getItem("token");
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem("user")
-      });
+      let user = localStorage.getItem("user");
+      this.props.setUser(user);
       this.getMovies(accessToken);
     }
   }
@@ -54,27 +53,24 @@ class MainView extends React.Component {
   onLoggedOut() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    this.setState({
-      user: null
-    });
+    this.props.setUser(null);
   }
 
   onRegister(registered, user) {
     this.setState({
-      registered,
-      user
+      registered
     });
+    this.props.setUser(user);
   }
 
   onLoggedIn(authData) {
-    console.log("authData123", authData);
     this.setState({
-      user: authData.user.Username,
       username: authData.user.Username,
-      password: authData.user.password,
-      email: authData.user.email,
-      favorites: authData.user.favorites
+      password: authData.user.Password,
+      email: authData.user.Email,
+      favorites: authData.user.FavoriteMovies
     });
+    this.props.setUser(authData.user.Username);
 
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
@@ -87,7 +83,7 @@ class MainView extends React.Component {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(response => {
-        this.setState({ movies: response.data });
+        this.props.setMovies(response.data);
       })
       .catch(function(error) {
         console.log(error);
@@ -117,7 +113,8 @@ class MainView extends React.Component {
 
   render() {
     const { username, password, email, favorites } = this.state;
-    const { movies, user } = this.state;
+    //const { user } = this.state;
+    const { movies, user } = this.props;
 
     return (
       <Router>
@@ -134,12 +131,13 @@ class MainView extends React.Component {
                 );
 
               if (movies.length === 0) return <div className="main-view" />;
-
-              return movies.map(m => (
-                <Col md={3} key={m._id}>
-                  <MovieCard movie={m} />
-                </Col>
-              ));
+              //return <MoviesList movies={movies} />;
+              return (
+                <div>
+                  <NavBarView onLoggedOut={() => this.onLoggedOut()} />
+                  <MoviesList movies={movies} />
+                </div>
+              );
             }}
           />
 
@@ -159,11 +157,17 @@ class MainView extends React.Component {
                 );
               if (movies.length === 0) return <div className="main-view" />;
 
-              return movies.map(m => (
-                <Col md={3} key={m._id}>
-                  <MovieCard movie={m} />
-                </Col>
-              ));
+              return (
+                <div>
+                  <NavBarView onLoggedOut={() => this.onLoggedOut()} />
+                  <MoviesList movies={movies} />;
+                  {/* {movies.map(m => (
+                    <Col md={3} key={m._id}>
+                      <MovieCard movie={m} />
+                    </Col>
+                  ))} */}
+                </div>
+              );
             }}
           />
           <Route
@@ -171,12 +175,15 @@ class MainView extends React.Component {
             path="/movies/:movieId"
             render={({ match }) => {
               return (
-                <Col md={8}>
-                  <MovieView
-                    movie={movies.find(m => m._id === match.params.movieId)}
-                    onBackClick={() => history.goBack()}
-                  />
-                </Col>
+                <div>
+                  <NavBarView onLoggedOut={() => this.onLoggedOut()} />
+                  <Col md={8}>
+                    <MovieView
+                      movie={movies.find(m => m._id === match.params.movieId)}
+                      onBackClick={() => history.goBack()}
+                    />
+                  </Col>
+                </div>
               );
             }}
           />
@@ -191,15 +198,18 @@ class MainView extends React.Component {
                 );
               if (movies.length === 0) return <div className="main-view" />;
               return (
-                <Col md={8}>
-                  <DirectorView
-                    Director={
-                      movies.find(m => m.Director.Name === match.params.name)
-                        .Director
-                    }
-                    onBackClick={() => history.goBack()}
-                  />
-                </Col>
+                <div>
+                  <NavBarView onLoggedOut={() => this.onLoggedOut()} />
+                  <Col md={8}>
+                    <DirectorView
+                      Director={
+                        movies.find(m => m.Director.Name === match.params.name)
+                          .Director
+                      }
+                      onBackClick={() => history.goBack()}
+                    />
+                  </Col>
+                </div>
               );
             }}
           />
@@ -214,14 +224,18 @@ class MainView extends React.Component {
                 );
               if (movies.length === 0) return <div className="main-view" />;
               return (
-                <Col md={8}>
-                  <GenreView
-                    Genre={
-                      movies.find(m => m.Genre.Name === match.params.name).Genre
-                    }
-                    onBackClick={() => history.goBack()}
-                  />
-                </Col>
+                <div>
+                  <NavBarView onLoggedOut={() => this.onLoggedOut()} />
+                  <Col md={8}>
+                    <GenreView
+                      Genre={
+                        movies.find(m => m.Genre.Name === match.params.name)
+                          .Genre
+                      }
+                      onBackClick={() => history.goBack()}
+                    />
+                  </Col>
+                </div>
               );
             }}
           />
@@ -236,7 +250,8 @@ class MainView extends React.Component {
                 );
               if (movies.length === 0) return <div className="main-view" />;
               return (
-                <>
+                <div>
+                  <NavBarView onLoggedOut={() => this.onLoggedOut()} />
                   <Col>
                     <UserProfile
                       username={username}
@@ -249,7 +264,7 @@ class MainView extends React.Component {
                       removeMovie={_id => this.onRemoveFavorite(_id)}
                     />
                   </Col>
-                </>
+                </div>
               );
             }}
           />
@@ -259,4 +274,14 @@ class MainView extends React.Component {
   }
 }
 
-export default MainView;
+let mapStateToProps = state => {
+  return {
+    movies: state.movies,
+    user: state.loggedInUser
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { setMovies, setUser }
+)(MainView);

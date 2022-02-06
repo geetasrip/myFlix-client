@@ -26,7 +26,7 @@ export function LoginView(props) {
         console.log("User not found");
       });
     /* then call props.onLoggedIn(username) */
-    props.onLoggedIn(username);
+    //props.onLoggedIn(username);
   };
 
   return (
