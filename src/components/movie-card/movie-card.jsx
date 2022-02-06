@@ -22,10 +22,7 @@ class MovieCard extends React.Component {
     );
   }
 }
-MovieCard.prototype = {
-  Title: PropTypes.string.isRequired,
-  onMovieClick: PropTypes.func.isRequired
-};
+
 
 export default MovieCard;
 
