@@ -3,7 +3,7 @@ import axios from "axios";
 import { confirm } from "react-confirm-box";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
 
-import { MovieCard } from "../movie-card/movie-card";
+import  MovieCard  from "../movie-card/movie-card";
 import "./user-profile.scss";
 
 export class UserProfile extends React.Component {
