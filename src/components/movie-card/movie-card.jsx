@@ -5,7 +5,7 @@ import { Card, CardColumns } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import movieimg from "../../img/images.jpeg";
 
-export class MovieCard extends React.Component {
+class MovieCard extends React.Component {
   render() {
     const { movie } = this.props;
 
@@ -26,3 +26,6 @@ MovieCard.prototype = {
   Title: PropTypes.string.isRequired,
   onMovieClick: PropTypes.func.isRequired
 };
+
+export default MovieCard;
+
