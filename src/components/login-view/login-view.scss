@@ -5,5 +5,18 @@
 .form-login {
   display: grid;
   justify-content: center;
-  padding-bottom: 500px;
+  margin-left: 25%;
+  margin-right: 25%;
+  width: 50%;
+}
+
+.form-container {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  border: ridge;
+  margin-left: 25%;
+  margin-right: 25%;
+  width: 50%;
+  margin-top: 10%;
+  box-shadow: 10px 10px grey;
 }

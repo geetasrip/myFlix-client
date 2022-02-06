@@ -30,38 +30,41 @@ export function LoginView(props) {
   };
 
   return (
-    <Form className="form-login">
-      <Form.Group controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
-          type="text"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-        />
-      </Form.Group>
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-      </Form.Group>
-      <Form.Group>
-        <Button
-          variant="primary"
-          className="buttons-login"
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Submit
-        </Button>
-        <Link to={`/register`}>
-          <Button variant="link" className="buttons-login">
-            Register
+    <div className="form-container">
+      <Form className="form-login signup-form">
+        <p className="h4 text-center mb-4">Sign in</p>
+        <Form.Group controlId="formUsername">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
+            type="text"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group controlId="formPassword">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Button
+            variant="primary"
+            className="buttons-login mt-4"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Submit
           </Button>
-        </Link>
-      </Form.Group>
-    </Form>
+          <Link to={`/register`}>
+            <Button variant="link" className="buttons-login">
+              Register
+            </Button>
+          </Link>
+        </Form.Group>
+      </Form>
+    </div>
   );
 }
