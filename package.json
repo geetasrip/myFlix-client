@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "myflix-client",
   "source": "src/index.html",
-  "default": "src/index.html",
   "type": "module",
   "scripts": {
     "test": "npm test",
@@ -36,7 +35,6 @@
     "parcel": "^2.2.1"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.2.1",
-    "parcel": "^2.2.1"
+    "@parcel/transformer-sass": "^2.2.1"
   }
 }
