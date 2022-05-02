@@ -5,22 +5,26 @@ import { Card, CardColumns } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import movieimg from "../../img/silenceofthelambs.png";
 
+import "./movie-card.scss";
+
 class MovieCard extends React.Component {
   render() {
     const { movie } = this.props;
 
     return (
-      <Card style={{ width: "18rem" }}>
-        <Card.Img className="card-img" variant="top" src={movieimg} />
-        <Card.Body>
-          <Card.Title>{movie.Title}</Card.Title>
-          <Card.Text>{movie.Description}</Card.Text>
-          <Link className="link-secondary" to={`/movies/${movie._id}`}>
-            <Button variant="link" className="link-danger">
-              Open
-            </Button>
-          </Link>
-        </Card.Body>
+      <Card className="movie-card shadow">
+        <img
+          className="movie-card-image"
+          alt={`A marketing poster for the movie ${movie.Title}`}
+          src={`https://res.cloudinary.com/dcbwemkv2/image/upload/v1651362661/${movie.ImagePath}`}
+          crossOrigin="anonymous"
+        />
+
+        <Link to={`/movies/${movie._id}`}>
+          <div className="card-link-bg-animated">
+            <Card.Title className="movie-card-title">{movie.Title}</Card.Title>
+          </div>
+        </Link>
       </Card>
     );
   }

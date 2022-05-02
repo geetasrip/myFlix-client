@@ -9,32 +9,30 @@ export class GenreView extends React.Component {
     const { Genre, onBackClick } = this.props;
 
     return (
-      <Container>
+      <Container className="gener-info">
         <br />
-        <Card bg="secondary" text="light" border="light" align="center">
-          <Card.Body>
-            {/* <Card.Title>Genre</Card.Title> */}
-            <div>
-              <span className="label">Name: </span>
-              <span className="value">{Genre.Name}</span>
-            </div>
-            <div>
-              <span className="label">Description: </span>
-              <span className="value">{Genre.Description}</span>
-            </div>
-            <div className="backButton">
-              <Button
-                size="md"
-                variant="light"
-                onClick={() => {
-                  onBackClick(null);
-                }}
-              >
-                Back
-              </Button>
-            </div>
-          </Card.Body>
-        </Card>
+        <Card.Body>
+          <h3 className="gener-title">Genre</h3>
+          <div>
+            <span className="label">Name: </span>
+            <span className="value">{Genre.Name}</span>
+          </div>
+          <div>
+            <span className="label">Description: </span>
+            <span className="value">{Genre.Description}</span>
+          </div>
+          <div className="backButton">
+            <Button
+              size="md"
+              variant="light"
+              onClick={() => {
+                onBackClick(null);
+              }}
+            >
+              Back
+            </Button>
+          </div>
+        </Card.Body>
       </Container>
     );
   }

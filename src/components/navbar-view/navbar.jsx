@@ -10,11 +10,11 @@ export function NavBarView(props) {
   const user = localStorage.getItem("user");
 
   return (
-    <Navbar className="navbar-custom">
+    <Navbar className="navbar-custom " expand="lg">
       <Container>
-        <Navbar.Brand className="navbar-text" href="#home">
-          MyFlix Client
-        </Navbar.Brand>
+        <Link to="/">
+          <Navbar.Brand>myFlix</Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

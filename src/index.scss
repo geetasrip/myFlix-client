@@ -1,5 +1,54 @@
-$color: rgb(119, 161, 140);
+/*$color: rgb(119, 161, 140);
 
 .my-flix {
   color: $color;
+}*/
+
+* {
+  font-family: "Nunito", sans-serif !important;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #4f359b !important;
+  font-family: "Nunito", sans-serif !important;
+}
+
+h2,
+h4,
+h3,
+p {
+  color: white !important;
+}
+
+input {
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.content {
+  width: 90% !important;
+  margin-top: 2rem;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  animation: fade 0.3s ease forwards;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(200px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

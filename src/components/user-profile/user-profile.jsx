@@ -3,7 +3,7 @@ import axios from "axios";
 import { confirm } from "react-confirm-box";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
 
-import  MovieCard  from "../movie-card/movie-card";
+import MovieCard from "../movie-card/movie-card";
 import "./user-profile.scss";
 
 export class UserProfile extends React.Component {
@@ -113,12 +113,10 @@ export class UserProfile extends React.Component {
   render() {
     const { username, email, favorites } = this.props;
     return (
-      <Container className="UserProfile">
+      <div className="content profile-page">
+        <h2 className="profile-title">Profile</h2>
         <Row className="justify-content-md-center">
           <Col className="user-info">
-            <div className="profileContent">
-              <h3>My Profile</h3>
-            </div>
             <span>Name: {username}</span>
             <br />
             <br />
@@ -218,7 +216,7 @@ export class UserProfile extends React.Component {
               </Col>
             ))}
         </Row>
-      </Container>
+      </div>
     );
   }
 }

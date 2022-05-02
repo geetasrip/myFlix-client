@@ -1,0 +1,48 @@
+.director-tab-list {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100px;
+  .selected-director {
+    background-color: #f10086;
+  }
+}
+
+.director-info {
+  padding: 1rem;
+  margin: 2rem auto;
+  background-color: #303030;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+}
+.director-info label {
+  text-decoration: bold;
+}
+
+.director-page-heading {
+  // font-family: "Lobster", cursive !important;
+  margin-bottom: 2rem;
+}
+
+.backButton {
+  color: white;
+  margin: auto;
+  border: none;
+  padding: 4px 18px;
+  text-align: center;
+}
+.director-title {
+  text-align: center;
+}
+
+@media (max-width: 415px) {
+  .director-tab-list {
+    font-size: 0.8rem;
+    justify-content: center;
+
+    button {
+      margin-right: 1rem;
+    }
+  }
+}

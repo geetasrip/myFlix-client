@@ -1,7 +1,38 @@
-.navbar-custom {
+/*.navbar-custom {
   background-color: #525252;
 }
 
 .nav-link {
   color: white !important;
+}*/
+
+.navbar-custom {
+  background-color: #303030 !important;
+  * {
+    color: white !important;
+  }
+  a {
+    text-decoration: none;
+  }
+
+  li {
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: #df38e8 !important;
+    }
+  }
+
+  span {
+    color: lightgray !important;
+  }
+}
+
+.navbar-brand {
+  font-family: "Lobster", cursive !important;
+}
+
+.active-page {
+  padding-bottom: 0 !important;
+  border-bottom: 2px solid #df38e8;
 }
