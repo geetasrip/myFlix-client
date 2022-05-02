@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 import { Card, CardColumns } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import movieimg from "../../img/silenceofthelambs.png";
 
 import "./movie-card.scss";
 

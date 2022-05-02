@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, Row, Col, Button } from "react-bootstrap";
 import "./movie-view.scss";
-import movieimg from "../../img/images.jpeg";
 import { Link } from "react-router-dom";
 
 import "./movie-view.scss";
