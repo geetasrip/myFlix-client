@@ -50,9 +50,13 @@ class MainView extends React.Component {
   //   });
 
   onLoggedOut() {
+    alert("hello");
+    console.log("clearing out localStorage");
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.clear();
     this.props.setUser(null);
+    window.location.reload();
   }
 
   onRegister(registered, user) {

@@ -9,6 +9,11 @@ import { UserProfile } from "../profile-view/profile-view";
 export function NavBarView(props) {
   const user = localStorage.getItem("user");
 
+  const handleLogOut = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
   return (
     <Navbar className="navbar-custom " expand="lg">
       <Container>
@@ -24,13 +29,11 @@ export function NavBarView(props) {
             <Nav.Link className="navbar-text" href="/user">
               Profile
             </Nav.Link>
-            <Nav.Link
-              className="navbar-text"
-              href="/"
-              onClick={props.onLoggedOut}
-            >
-              Logout
-            </Nav.Link>
+            <Link to="/">
+              <Nav.Link className="navbar-text" onClick={handleLogOut}>
+                Logout
+              </Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
