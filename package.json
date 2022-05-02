@@ -36,4 +36,7 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.2.1"
   }
+  "alias": {
+    "process": false
+ }
 }
